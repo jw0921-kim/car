@@ -35,12 +35,16 @@ function render() {
 
 function updateCard(div, name) {
   div.className = "card";
-  if (state[name]?.car) div.classList.add("car");
-  if (state[name]?.flex) div.classList.add("flexible");
+  if (state[name]?.exclude) {
+    div.style.background = "#fca5a5"; // 빨강
+  } else {
+    if (state[name]?.car) div.classList.add("car");
+    if (state[name]?.flex) div.classList.add("flexible");
+  }
 }
 
 function assignCars() {
-  const passengers = [...brothers, ...sisters].filter(n => !state[n]?.car);
+  const passengers = [...brothers, ...sisters].filter(n => !state[n]?.car && !state[n]?.exclude);
   const drivers = [...brothers, ...sisters].filter(n => state[n]?.car);
   const results = [];
   let passengerIdx = 0;
