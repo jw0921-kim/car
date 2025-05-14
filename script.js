@@ -16,10 +16,15 @@ function render() {
       div.className = "card";
       div.innerText = name;
       div.onclick = () => {
-        if (!state[name]) state[name] = { car: false, flex: false };
-        else if (!state[name].car) state[name].car = true;
-        else if (!state[name].flex) state[name].flex = true;
-        else state[name] = { car: false, flex: false };
+        if (!state[name]) {
+          state[name] = { car: true, flex: false };
+        } else if (!state[name].car) {
+          state[name].car = true;
+        } else if (!state[name].flex) {
+          state[name].flex = true;
+        } else {
+          state[name] = { car: false, flex: false };
+        }
         updateCard(div, name);
       };
       updateCard(div, name);
