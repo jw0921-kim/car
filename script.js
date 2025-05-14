@@ -35,6 +35,7 @@ function render() {
 
 function updateCard(div, name) {
   div.className = "card";
+  div.style.background = ""; // 초기화
   if (state[name]?.exclude) {
     div.style.background = "#fca5a5"; // 빨강
   } else {
