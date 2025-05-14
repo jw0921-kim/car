@@ -7,25 +7,28 @@ body {
 h1, h2 {
   margin-bottom: 10px;
 }
-.card-container {
+#brothers, #sisters {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 20px;
+  padding: 10px;
   border: 1px solid #ddd;
   background: #fff;
-  padding: 10px;
   max-height: none;
-  overflow: visible;
+  overflow-y: visible;
 }
 .card {
-  padding: 4px 8px;
-  font-size: 13px;
-  min-width: 60px;
-  border-radius: 8px;
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 11px;
+  border-radius: 6px;
   background: #ccc;
   cursor: pointer;
   user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .card.car {
   background: #86efac;
