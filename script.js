@@ -47,20 +47,31 @@ function assignCars() {
   const passengers = [...brothers, ...sisters].filter(n => !state[n]?.car && !state[n]?.exclude);
   const drivers = [...brothers, ...sisters].filter(n => state[n]?.car);
   const results = [];
-  let passengerIdx = 0;
+
+  let unassigned = new Set(passengers);
 
   for (let driver of drivers) {
     const group = [];
-    while (group.length < 3 && passengerIdx < passengers.length) {
-      group.push(passengers[passengerIdx++]);
+    const isFlex = state[driver]?.flex;
+    const driverGender = brothers.includes(driver) ? '형제' : '자매';
+
+    for (let p of passengers) {
+      if (!unassigned.has(p)) continue;
+      const passengerGender = brothers.includes(p) ? '형제' : '자매';
+      if (isFlex || driverGender === passengerGender) {
+        group.push(p);
+        unassigned.delete(p);
+      }
+      if (group.length === 3) break;
     }
+
     results.push(`${driver} 차량 → ${group.join(", ") || "탑승자 없음"}`);
   }
 
   const resultDiv = document.getElementById("result");
   resultDiv.innerHTML = results.join("<br/>");
 
-  if (passengerIdx < passengers.length) {
+  if (unassigned.size > 0) {
     alert("탑승 인원이 부족합니다. 성별 무관 태우기(파랑)로 토글해 주세요!");
   }
 }
