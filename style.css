@@ -7,28 +7,28 @@ body {
 h1, h2 {
   margin-bottom: 10px;
 }
-#brothers, #sisters {
+.controls {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+}
+.card-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  padding: 10px;
+  gap: 10px;
+  margin-bottom: 20px;
+  max-height: 300px;
+  overflow-y: auto;
   border: 1px solid #ddd;
   background: #fff;
-  max-height: none;
-  overflow-y: visible;
+  padding: 10px;
 }
 .card {
-  width: 70px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  font-size: 11px;
-  border-radius: 6px;
+  padding: 10px 15px;
+  border-radius: 10px;
   background: #ccc;
   cursor: pointer;
   user-select: none;
-  white-space: nowrap;
-  overflow: hidden;
 }
 .card.car {
   background: #86efac;
@@ -37,15 +37,11 @@ h1, h2 {
   background: #93c5fd;
 }
 .legend {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  text-align: left;
   background: white;
-  padding: 10px;
   border: 1px solid #aaa;
   border-radius: 8px;
-  z-index: 1000;
+  padding: 10px;
+  margin-bottom: 20px;
   box-shadow: 0 0 4px rgba(0,0,0,0.1);
 }
 .legend-box {
@@ -54,8 +50,17 @@ h1, h2 {
   height: 16px;
   border-radius: 4px;
   margin-right: 6px;
+  vertical-align: middle;
 }
 button {
-  margin-bottom: 20px;
   padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+#result {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 15px;
+  min-height: 60px;
+  white-space: pre-line;
 }

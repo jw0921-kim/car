@@ -10,15 +10,22 @@
 <body>
   <header>
     <h1>차량 배정 시스템</h1>
-    <button onclick="assignCars()">배정하기</button>
-    <div class="legend">
-      <strong>[색상 설명]</strong><br/>
-      <span class="legend-box" style="background:#ccc;"></span> 회색: 차 없음<br/>
-      <span class="legend-box" style="background:#86efac;"></span> 초록: 차량 있음<br/>
-      <span class="legend-box" style="background:#93c5fd;"></span> 파랑: 차량 있음 + 성별 무관 탑승 허용<br/>
-      <span class="legend-box" style="background:#fca5a5;"></span> 빨강: 배정 제외
+    <div class="controls">
+      <button onclick="assignCars()">배정하기</button>
+      <button onclick="resetAll()">리셋</button>
     </div>
   </header>
+
+  <section class="legend">
+    <h3>색상 설명</h3>
+    <ul>
+      <li><span class="legend-box" style="background:#ccc;"></span> 회색: 차 없음</li>
+      <li><span class="legend-box" style="background:#86efac;"></span> 초록: 차량 있음</li>
+      <li><span class="legend-box" style="background:#93c5fd;"></span> 파랑: 차량 있음 + 성별 무관 탑승 허용</li>
+      <li><span class="legend-box" style="background:#fca5a5;"></span> 빨강: 배정 제외</li>
+    </ul>
+  </section>
+
   <main>
     <section>
       <h2>형제</h2>
