@@ -24,7 +24,7 @@ function render() {
   renderGroup(sisterGroups, sisWrap, window.sisters);
 }
 
-  }
+  
 
 
 
