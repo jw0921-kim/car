@@ -33,10 +33,12 @@ function render() {
 }
 
 function toggle(name, div) {
-  if (!state[name]) state[name] = { car: true, flex: false, exclude: false };
-  else if (state[name].car) state[name] = { car: false, flex: true, exclude: false };
+  if (!state[name]) state[name] = { car: false, flex: false, exclude: false };
+  else if (state[name].exclude) state[name] = { car: false, flex: false, exclude: false };
   else if (state[name].flex) state[name] = { car: false, flex: false, exclude: true };
-  else state[name] = { car: false, flex: false, exclude: false };
+  else if (state[name].car) state[name] = { car: false, flex: true, exclude: false };
+  else state[name] = { car: true, flex: false, exclude: false };
+
   updateCard(div, name);
   localStorage.setItem("personStates", JSON.stringify(state));
 }
