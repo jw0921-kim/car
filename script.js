@@ -82,7 +82,7 @@ function assignCars() {
   }
 
   // 균등하게 분배
-  let i = 0;
+  
   for (let p of passengers) {
   const target = targets.find(t => t.list.length < 3);
   if (target) {
