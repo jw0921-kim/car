@@ -122,8 +122,8 @@ function assignCars() {
 
   const result = driverList.map(d => `${d.name} 차량 → ${d.list.join(", ") || "탑승자 없음"}`).join("\n");
   document.getElementById("result").innerText = result;
-  const neededBro = Math.max(0, Math.ceil(broPassengers.length / 3) - broDrivers.length);
-  const neededSis = Math.max(0, Math.ceil(sisPassengers.length / 3) - sisDrivers.length);
+  const neededBro = Math.max(0, Math.ceil(broPassengers.length / 3) - broDrivers.length - driverList.filter(d => d.flex).length);
+  const neededSis = Math.max(0, Math.ceil(sisPassengers.length / 3) - sisDrivers.length - driverList.filter(d => d.flex).length);
   if (neededBro > 0 || neededSis > 0) {
     let msg = "탑승 인원이 부족합니다.";
     if (neededBro > 0) msg += `\n형제 차량이 최소 ${neededBro}대 더 필요합니다.`;
