@@ -24,11 +24,13 @@ h1, h2 {
   padding: 10px;
 }
 .card {
-  padding: 10px 15px;
-  border-radius: 10px;
+  font-size: 11px;
+  padding: 4px 6px;
+  border-radius: 6px;
   background: #ccc;
   cursor: pointer;
   user-select: none;
+  word-break: keep-all;
 }
 .card.car {
   background: #86efac;

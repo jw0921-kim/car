@@ -53,37 +53,52 @@ function updateCard(div, name) {
   }
 }
 
+
+
 function assignCars() {
   const all = [...brothers, ...sisters].filter(n => !n.startsWith("//"));
   const passengers = all.filter(n => !state[n]?.car && !state[n]?.exclude);
   const drivers = all.filter(n => state[n]?.car);
   const results = [];
-  let unassigned = new Set(passengers);
+
+  if (drivers.length === 0) {
+    alert("운전자가 없습니다!");
+    return;
+  }
+
+  const maxPerCar = Math.ceil(passengers.length / drivers.length);
+  let unassigned = [...passengers];
 
   for (let driver of drivers) {
     const group = [];
     const isFlex = state[driver]?.flex;
     const driverGender = brothers.includes(driver) ? "형제" : "자매";
 
-    for (let p of passengers) {
-      if (!unassigned.has(p)) continue;
+    for (let i = 0; i < unassigned.length; i++) {
+      const p = unassigned[i];
       const passengerGender = brothers.includes(p) ? "형제" : "자매";
       if (isFlex || driverGender === passengerGender) {
         group.push(p);
-        unassigned.delete(p);
+        unassigned.splice(i, 1);
+        i--;
       }
-      if (group.length === 3) break;
+      if (group.length >= maxPerCar) break;
     }
+
     results.push(`${driver} 차량 → ${group.join(", ") || "탑승자 없음"}`);
   }
 
-  const result = results.join("\n");
+  const result = results.join("
+");
   document.getElementById("result").innerText = result;
   localStorage.setItem("lastAssignment", result);
 
-  if (unassigned.size > 0) {
-    alert("탑승 인원이 부족합니다. 성별 무관 차량(파랑) 또는 제외 조정이 필요합니다.");
+  if (unassigned.length > 0) {
+    alert("일부 인원이 배정되지 못했습니다. 운전자를 늘리거나 제외 인원을 조정해 주세요.");
   }
+}
+
+
 }
 
 function resetAll() {
