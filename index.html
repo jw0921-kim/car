@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>차량 배정 시스템</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>차량 배정 시스템</h1>
+    <div class="controls">
+      <label class="switch">
+        <input type="checkbox" id="deptToggle" />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">부서 우선 배정</span>
+      <button onclick="assignCars()">배정하기</button>
+      <button onclick="confirmReset('all')">전체 리셋</button>
+      <button onclick="confirmReset('result')">배정결과 리셋</button>
+      <button onclick="confirmReset('exclude')">빨강 제외 리셋</button>
+    </div>
+  </header>
+  <main class="main-grid">
+    <section>
+      <h2>형제</h2>
+      <div id="brothers" class="card-section"></div>
+    </section>
+    <section>
+      <h2>자매</h2>
+      <div id="sisters" class="card-section"></div>
+    </section>
+  </main>
+  <section>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <h2 style="margin:0;">배정 결과</h2>
+      <label class="switch">
+        <input type="checkbox" id="deptToggleBottom" />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">부서 우선 배정</span>
+      <button onclick="syncToggle(); assignCars()">배정하기</button>
+    </div>
+    <div id="result" class="result-box"></div>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>
