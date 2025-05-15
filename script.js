@@ -91,7 +91,8 @@ function assignCars() {
     unassigned.push(p); // 탑승 실패한 사람 따로 저장
   }
   }
-  
+  }
+    
   distribute(broPassengers, "형제");
   distribute(sisPassengers, "자매");
 
