@@ -24,16 +24,7 @@ function render() {
   renderGroup(sisterGroups, sisWrap, window.sisters);
 }
 
-  const broWrap = document.getElementById("brothers");
-  const sisWrap = document.getElementById("sisters");
-  broWrap.innerHTML = sisWrap.innerHTML = "";
-
-  window.brothers = [];
-  window.sisters = [];
-
-  renderGroup(brotherGroups, broWrap, window.brothers);
-  renderGroup(sisterGroups, sisWrap, window.sisters);
-}
+  }
 
 
 
@@ -99,17 +90,6 @@ function assignCars() {
   }
 }
 
-    for (let p of passengers) {
-      let candidates = driverList.filter(d => d.gender === gender && d.list.length < 3);
-      if (deptPref) {
-        const dept = getDept(p);
-        const sameDept = candidates.filter(d => d.dept === dept);
-        if (sameDept.length > 0) candidates = sameDept;
-      }
-      if (candidates.length === 0) continue;
-      const chosen = candidates[Math.floor(Math.random() * candidates.length)];
-      chosen.list.push(p);
-    }
   }
 
   distribute(broPassengers, "형제");
@@ -188,21 +168,3 @@ function renderGroup(groups, wrap, list) {
   }
 }
 
-function renderGroup(groups, wrap, list) {
-  for (const dept in groups) {
-    const title = document.createElement("div");
-    title.className = "section-title";
-    title.innerText = dept;
-    wrap.appendChild(title);
-    groups[dept].forEach(name => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerText = name;
-      div.dataset.dept = dept;
-      div.onclick = () => toggle(name, div);
-      updateCard(div, name);
-      wrap.appendChild(div);
-      list.push(name);
-    });
-  }
-}
