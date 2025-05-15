@@ -1,4 +1,4 @@
- 
+
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
@@ -102,3 +102,13 @@ input:checked + .slider:before {
 .toggle-label {
   font-size: 12px;
 }
+
+
+.section-title {
+  width: 100%;
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #111827;
+}
+ㅁ
