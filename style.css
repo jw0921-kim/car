@@ -11,3 +11,14 @@ h1 { margin: 0; font-size: 18px; }
 .card { font-size: 11px; padding: 4px 6px; background: #ccc; border-radius: 4px; cursor: pointer; user-select: none; }
 .card.green { background: #86efac; } .card.blue { background: #93c5fd; } .card.red { background: #fca5a5; }
 #result { margin-top: 10px; white-space: pre-line; background: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; }
+
+@media screen and (max-width: 600px) {
+  .card {
+    font-size: 10px;
+    padding: 3px 5px;
+    min-width: 60px;
+  }
+  .card-section {
+    gap: 4px;
+  }
+}
