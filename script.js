@@ -3,26 +3,24 @@ const brotherGroups = {'겸손부': ['이태섭', '김진우', '이동환', '김
 const sisterGroups = {'겸손부': ['전효진', '고다영', '남소연', '김유나', '정여진', '심규리', '김민서', '박지혜', '심재경', '유지연', '심예림', '이소희', '임도해', '이현화', '김소은', '김이안'], '온유부': ['김유진', '이지희', '김민지', '임윤지', '박다은', '유재나', '김세연', '김채연', '임민해', '한예은', '임연주', '최연서', '한가은'], '사랑부': ['김혜련', '강민지', '최선영', '정희주', '박나은', '라유리', '하지원', '김호연', '유승비', '김주연', '강다빈', '이주화', '양정민', '한다빈', '유현지', '이다연']};
 const state = {};
 
-
 function render() {
   const broWrap = document.getElementById("brothers");
   const sisWrap = document.getElementById("sisters");
   broWrap.innerHTML = sisWrap.innerHTML = "";
 
-  const renderGroup = (groups, container, list) => {
-    for (const dept in groups) {
-      const label = document.createElement("div");
-      label.innerText = dept;
-      label.className = "section-title";
-      container.appendChild(label);
-
-      groups[dept].forEach(name => {
+  const renderGroup = (group, wrap, list) => {
+    for (const dept in group) {
+      const title = document.createElement("div");
+      title.className = "section-title";
+      title.innerText = dept;
+      wrap.appendChild(title);
+      group[dept].forEach(name => {
         const div = document.createElement("div");
-        div.innerText = name;
         div.className = "card";
+        div.innerText = name;
         div.onclick = () => toggle(name, div);
         updateCard(div, name);
-        container.appendChild(div);
+        wrap.appendChild(div);
         list.push(name);
       });
     }
@@ -33,7 +31,6 @@ function render() {
   renderGroup(brotherGroups, broWrap, brothers);
   renderGroup(sisterGroups, sisWrap, sisters);
 }
-
 
 function toggle(name, div) {
   if (!state[name]) state[name] = { car: true, flex: false, exclude: false };
@@ -52,18 +49,14 @@ function updateCard(div, name) {
   else if (s?.flex) div.classList.add("blue");
 }
 
-
-
 function assignCars() {
   const all = [...brothers, ...sisters];
   const broDrivers = brothers.filter(n => state[n]?.car);
   const sisDrivers = sisters.filter(n => state[n]?.car);
   const broPassengers = brothers.filter(n => !state[n]?.car && !state[n]?.exclude);
   const sisPassengers = sisters.filter(n => !state[n]?.car && !state[n]?.exclude);
-  const flexDrivers = [...broDrivers, ...sisDrivers].filter(n => state[n]?.flex);
 
-  const drivers = [...broDrivers, ...sisDrivers];
-  const driverMap = drivers.map(n => ({
+  const driverList = [...broDrivers, ...sisDrivers].map(n => ({
     name: n,
     gender: brothers.includes(n) ? "형제" : "자매",
     flex: state[n]?.flex,
@@ -71,11 +64,9 @@ function assignCars() {
   }));
 
   function distribute(passengers, gender) {
-    const same = driverMap.filter(d => d.gender === gender && !d.flex);
-    const flex = driverMap.filter(d => d.flex);
-    const targets = [...same, ...flex];
-    const count = passengers.length;
-
+    const fixed = driverList.filter(d => d.gender === gender && !d.flex);
+    const flex = driverList.filter(d => d.flex);
+    const targets = [...fixed, ...flex];
     targets.sort((a, b) => a.list.length - b.list.length);
     let i = 0;
     for (let p of passengers) {
@@ -87,61 +78,29 @@ function assignCars() {
   distribute(broPassengers, "형제");
   distribute(sisPassengers, "자매");
 
-  const results = driverMap.map(d => {
-    return `${d.name} 차량 → ${d.list.join(", ") || "탑승자 없음"}`;
-  });
-
-  document.getElementById("result").innerText = results.join("
-");
-  localStorage.setItem("lastAssignment", results.join("
-"));
+  const results = driverList.map(d =>
+    `${d.name} 차량 → ${d.list.join(", ") || "탑승자 없음"}`
+  );
+  const txt = results.join("\n");
+  document.getElementById("result").innerText = txt;
+  localStorage.setItem("lastAssignment", txt);
   localStorage.setItem("personStates", JSON.stringify(state));
 
-  // 부족 차량 계산
   const neededBro = Math.max(0, Math.ceil(broPassengers.length / 3) - broDrivers.length);
   const neededSis = Math.max(0, Math.ceil(sisPassengers.length / 3) - sisDrivers.length);
-
   if (neededBro > 0 || neededSis > 0) {
     let msg = "탑승 인원이 부족합니다.";
-    if (neededBro > 0) msg += `
-형제 차량이 최소 ${neededBro}대 더 필요합니다.`;
-    if (neededSis > 0) msg += `
-자매 차량이 최소 ${neededSis}대 더 필요합니다.`;
+    if (neededBro > 0) msg += `\n형제 차량이 최소 ${neededBro}대 더 필요합니다.`;
+    if (neededSis > 0) msg += `\n자매 차량이 최소 ${neededSis}대 더 필요합니다.`;
     alert(msg);
   }
-}
-
-
-  const results = driverList.map(d =>
-    `${d.name} 차량 → ${d.list.join(", ") || "탑승자 없음"}`
-  );
-  const resultText = results.join("
-");
-  document.getElementById("result").innerText = resultText;
-  localStorage.setItem("lastAssignment", resultText);
-  localStorage.setItem("personStates", JSON.stringify(state));
-
-  if (unassigned.length > 0) {
-    const needed = Math.ceil(unassigned.length / 3);
-    alert(`탑승하지 못한 인원이 있습니다. 차량이 최소 ${needed}대 더 필요합니다.`);
-  }
-}
-
-
-  const results = driverList.map(d =>
-    `${d.name} 차량 → ${d.list.join(", ") || "탑승자 없음"}`
-  );
-  const result = results.join("\n");
-  document.getElementById("result").innerText = result;
-  localStorage.setItem("lastAssignment", result);
-  localStorage.setItem("personStates", JSON.stringify(state));
 }
 
 function confirmReset(type) {
   const msg = {
     all: "정말 모든 상태를 리셋하시겠습니까?",
     result: "정말 배정 결과만 리셋하시겠습니까?",
-    exclude: "정말 제외 상태만 해제하시겠습니까?"
+    exclude: "정말 회색/초록/파랑만 리셋하시겠습니까?"
   };
   if (!confirm(msg[type])) return;
 
@@ -151,16 +110,11 @@ function confirmReset(type) {
   } else if (type === "result") {
     localStorage.removeItem("lastAssignment");
     document.getElementById("result").innerText = "";
-  
   } else if (type === "exclude") {
     for (const name in state) {
-      if (!state[name].car && !state[name].flex && state[name].exclude === false) {
-        delete state[name]; // 기본 상태로 되돌림 (회색)
-      }
+      if (!state[name].exclude) delete state[name];
     }
     render();
-    localStorage.setItem("personStates", JSON.stringify(state));
-
     localStorage.setItem("personStates", JSON.stringify(state));
   }
 }
