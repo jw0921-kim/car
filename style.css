@@ -111,4 +111,15 @@ input:checked + .slider:before {
   font-size: 13px;
   color: #111827;
 }
-ㅁ
+
+.legend {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.legend .card {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 11px;
+  margin-right: 4px;
+}
