@@ -84,15 +84,23 @@ function assignCars() {
 
   // 균등하게 분배
   
-  for (let p of passengers) {
-  const target = targets.find(t => t.list.length < 3);
-  if (target) {
-    target.list.push(p);
-  } else {
-    unassigned.push(p); // 탑승 실패한 사람 따로 저장
+  let i = 0;
+for (let p of passengers) {
+  let assigned = false;
+  let attempts = 0;
+  while (!assigned && attempts < targets.length) {
+    const target = targets[i % targets.length];
+    if (target.list.length < 3) {
+      target.list.push(p);
+      assigned = true;
+    }
+    i++;
+    attempts++;
   }
+  if (!assigned) {
+    unassigned.push(p);
   }
-  }
+}
     
   distribute(broPassengers, "형제");
   distribute(sisPassengers, "자매");
