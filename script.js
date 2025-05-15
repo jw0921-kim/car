@@ -82,11 +82,27 @@ function assignCars() {
   }));
 
   function distribute(passengers, gender) {
-    passengers = [...passengers];
-    for (let i = passengers.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [passengers[i], passengers[j]] = [passengers[j], passengers[i]];
+  passengers = [...passengers];
+  for (let i = passengers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [passengers[i], passengers[j]] = [passengers[j], passengers[i]];
+  }
+
+  let candidates = driverList.filter(d => d.gender === gender && d.list.length < 3);
+  if (!candidates.length) return;
+
+  const chunkSize = Math.ceil(passengers.length / candidates.length);
+  let idx = 0;
+  for (let p of passengers) {
+    let d = candidates[idx % candidates.length];
+    while (d.list.length >= 3) {
+      idx++;
+      d = candidates[idx % candidates.length];
     }
+    d.list.push(p);
+    idx++;
+  }
+}
 
     for (let p of passengers) {
       let candidates = driverList.filter(d => d.gender === gender && d.list.length < 3);
