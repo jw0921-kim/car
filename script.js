@@ -60,7 +60,8 @@ function updateCard(div, name) {
 function assignCars() {
   const broDrivers = brothers.filter(n => state[n]?.car || state[n]?.flex);
   const sisDrivers = sisters.filter(n => state[n]?.car || state[n]?.flex);  const broPassengers = brothers.filter(n => !state[n]?.car && !state[n]?.exclude);
-  const sisPassengers = sisters.filter(n => !state[n]?.car && !state[n]?.exclude);
+  const broPassengers = brothers.filter(n => !state[n]?.car && !state[n]?.flex && !state[n]?.exclude);
+  const sisPassengers = sisters.filter(n => !state[n]?.car && !state[n]?.flex && !state[n]?.exclude);
   const driverList = [...broDrivers, ...sisDrivers].map(n => {
     return {
       name: n,
