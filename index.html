@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>차량 배정 시스템</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <h1>차량 배정</h1>
+    <div class="button-group">
+      <button onclick="assignCars()">배정하기</button>
+      
+    <button onclick="confirmReset('all')">전체 리셋</button>
+    <button onclick="confirmReset('result')">배정결과 리셋</button>
+    <button onclick="confirmReset('exclude')">빨강 제외 리셋</button>
+    
+    </div>
+  </header>
+
+  <section class="legend">
+    <div class="legend-item"><span class="color-box gray"></span>차 없음</div>
+    <div class="legend-item"><span class="color-box green"></span>차 있음</div>
+    <div class="legend-item"><span class="color-box blue"></span>성별 무관</div>
+    <div class="legend-item"><span class="color-box red"></span>배정 제외</div>
+  </section>
+
+  <main>
+    <section class="column">
+      <h2>형제</h2>
+      <div class="card-section" id="brothers"></div>
+    </section>
+    <section class="column">
+      <h2>자매</h2>
+      <div class="card-section" id="sisters"></div>
+    </section>
+  </main>
+
+  <section class="results">
+    <h2>배정 결과</h2>
+    <div id="result"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

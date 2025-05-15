@@ -1,0 +1,77 @@
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  color: #333;
+}
+header {
+  background: #ffffff;
+  padding: 12px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+.button-group button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+}
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+.column {
+  flex: 1;
+  min-width: 260px;
+}
+.card-section {
+  display: grid;
+.card.green {
+  background: #86efac;
+}
+.card.blue {
+  background: #93c5fd;
+}
+.card.red {
+  background: #fca5a5;
+}
+.legend {
+  display: flex;
+  gap: 16px;
+  padding: 10px 20px;
+  font-size: 13px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+.color-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+.color-box.gray { background: #ccc; }
+.color-box.green { background: #86efac; }
+.color-box.blue { background: #93c5fd; }
+.color-box.red { background: #fca5a5; }
+.results {
+  padding: 0 20px 20px;
+}
+#result {
+  background: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  min-height: 50px;
+  white-space: pre-line;
+  font-size: 13px;
+  border: 1px solid #ddd;
+}
