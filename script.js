@@ -35,24 +35,7 @@ function render() {
   renderGroup(sisterGroups, sisWrap, window.sisters);
 }
 
-function renderGroup(groups, wrap, list) {
-  for (const dept in groups) {
-    const title = document.createElement("div");
-    title.className = "section-title";
-    title.innerText = dept;
-    wrap.appendChild(title);
-    groups[dept].forEach(name => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerText = name;
-      div.dataset.dept = dept;
-      div.onclick = () => toggle(name, div);
-      updateCard(div, name);
-      wrap.appendChild(div);
-      list.push(name);
-    });
-  }
-}
+
 
 function toggle(name, div) {
   const current = state[name] || { car: false, flex: false, exclude: false };
@@ -185,6 +168,25 @@ window.onload = () => {
   const res = localStorage.getItem("lastAssignment");
   if (res) document.getElementById("result").innerText = res;
 };
+
+function renderGroup(groups, wrap, list) {
+  for (const dept in groups) {
+    const title = document.createElement("div");
+    title.className = "section-title";
+    title.innerText = dept;
+    wrap.appendChild(title);
+    groups[dept].forEach(name => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerText = name;
+      div.dataset.dept = dept;
+      div.onclick = () => toggle(name, div);
+      updateCard(div, name);
+      wrap.appendChild(div);
+      list.push(name);
+    });
+  }
+}
 
 function renderGroup(groups, wrap, list) {
   for (const dept in groups) {
