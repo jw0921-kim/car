@@ -11,7 +11,19 @@ const sisterGroups = {
 };
 const state = {};
 
+
 function render() {
+  const broWrap = document.getElementById("brothers");
+  const sisWrap = document.getElementById("sisters");
+  broWrap.innerHTML = sisWrap.innerHTML = "";
+
+  window.brothers = [];
+  window.sisters = [];
+
+  renderGroup(brotherGroups, broWrap, window.brothers);
+  renderGroup(sisterGroups, sisWrap, window.sisters);
+}
+
   const broWrap = document.getElementById("brothers");
   const sisWrap = document.getElementById("sisters");
   broWrap.innerHTML = sisWrap.innerHTML = "";
@@ -173,3 +185,22 @@ window.onload = () => {
   const res = localStorage.getItem("lastAssignment");
   if (res) document.getElementById("result").innerText = res;
 };
+
+function renderGroup(groups, wrap, list) {
+  for (const dept in groups) {
+    const title = document.createElement("div");
+    title.className = "section-title";
+    title.innerText = dept;
+    wrap.appendChild(title);
+    groups[dept].forEach(name => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerText = name;
+      div.dataset.dept = dept;
+      div.onclick = () => toggle(name, div);
+      updateCard(div, name);
+      wrap.appendChild(div);
+      list.push(name);
+    });
+  }
+}
