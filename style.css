@@ -1,0 +1,100 @@
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: #f9fafb;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  min-width: 280px;
+  flex-grow: 1;
+}
+
+.card {
+  padding: 4px 6px;
+  border-radius: 6px;
+  background: #d1d5db;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.card.green { background: #bbf7d0; }
+.card.blue { background: #bfdbfe; }
+.card.red { background: #fecaca; }
+
+.result-box {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  white-space: pre-line;
+  margin-top: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: #4ade80;
+}
+input:checked + .slider:before {
+  transform: translateX(22px);
+}
+.toggle-label {
+  font-size: 12px;
+}
