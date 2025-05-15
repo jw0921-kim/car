@@ -101,7 +101,7 @@ for (let p of passengers) {
     unassigned.push(p);
   }
 }
-    
+  }    
   distribute(broPassengers, "형제");
   distribute(sisPassengers, "자매");
 
