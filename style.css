@@ -1,0 +1,14 @@
+
+body { font-family: sans-serif; background: #f5f7fa; margin: 0; padding: 10px; }
+header { background: #fff; padding: 10px; display: flex; flex-wrap: wrap; justify-content: space-between; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+h1 { font-size: 18px; margin: 0 0 6px; }
+h2 { margin: 10px 0 6px; }
+.buttons button { margin: 4px; padding: 6px 12px; font-size: 13px; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; margin: 10px 0; }
+.box { width: 14px; height: 14px; border-radius: 4px; display: inline-block; margin-right: 4px; }
+.gray { background: #ccc; } .green { background: #86efac; } .blue { background: #93c5fd; } .red { background: #fca5a5; }
+.card-section { display: flex; flex-wrap: wrap; gap: 6px; background: #fff; padding: 10px; border: 1px solid #ddd; border-radius: 6px; }
+.section-title { flex-basis: 100%; font-weight: bold; font-size: 13px; margin: 10px 0 4px; border-bottom: 1px solid #ccc; }
+.card { font-size: 11px; padding: 4px 6px; border-radius: 4px; background: #ccc; cursor: pointer; user-select: none; }
+.card.green { background: #86efac; } .card.blue { background: #93c5fd; } .card.red { background: #fca5a5; }
+#result { background: #fff; white-space: pre-line; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-top: 10px; font-size: 13px; }
