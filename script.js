@@ -84,8 +84,11 @@ function assignCars() {
   // 균등하게 분배
   let i = 0;
   for (let p of passengers) {
-    targets[i % targets.length].list.push(p);
-    i++;
+  const target = targets.find(t => t.list.length < 3);
+  if (target) {
+    target.list.push(p);
+  } else {
+    unassigned.push(p); // 탑승 실패한 사람 따로 저장
   }
   }
   
