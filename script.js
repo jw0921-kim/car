@@ -72,15 +72,22 @@ function assignCars() {
   });
 
   function distribute(passengers, gender) {
-    const fixed = driverList.filter(d => d.gender === gender && !d.flex);
-    const flex = driverList.filter(d => d.flex);
-    const targets = [...fixed, ...flex];
-    targets.sort((a, b) => a.list.length - b.list.length);
-    let i = 0;
-    for (let p of passengers) {
-      targets[i % targets.length].list.push(p);
-      i++;
-    }
+  const fixed = driverList.filter(d => d.gender === gender && !d.flex);
+  const flex = driverList.filter(d => d.flex);
+  const targets = [...fixed, ...flex];
+
+  // === 탑승자 랜덤 섞기 ===
+  for (let i = passengers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [passengers[i], passengers[j]] = [passengers[j], passengers[i]];
+  }
+
+  // === 운전자는 순서 고정, 균등 배분 ===
+  let i = 0;
+  for (let p of passengers) {
+    targets[i % targets.length].list.push(p);
+    i++;
+  }
   }
 
   distribute(broPassengers, "형제");
