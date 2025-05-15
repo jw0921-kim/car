@@ -33,11 +33,17 @@ function render() {
 }
 
 function toggle(name, div) {
-  if (!state[name]) state[name] = { car: false, flex: false, exclude: false };
-  else if (state[name].exclude) state[name] = { car: false, flex: false, exclude: false };
-  else if (state[name].flex) state[name] = { car: false, flex: false, exclude: true };
-  else if (state[name].car) state[name] = { car: false, flex: true, exclude: false };
-  else state[name] = { car: true, flex: false, exclude: false };
+  const current = state[name] || { car: false, flex: false, exclude: false };
+
+  if (!state[name]) {
+    state[name] = { car: true, flex: false, exclude: false }; // 첫 클릭 = 초록
+  } else if (current.car) {
+    state[name] = { car: false, flex: true, exclude: false }; // 초록 → 파랑
+  } else if (current.flex) {
+    state[name] = { car: false, flex: false, exclude: true }; // 파랑 → 빨강
+  } else if (current.exclude) {
+    delete state[name]; // 빨강 → 회색(삭제)
+  }
 
   updateCard(div, name);
   localStorage.setItem("personStates", JSON.stringify(state));
