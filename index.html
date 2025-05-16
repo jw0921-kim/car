@@ -3,32 +3,53 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>차량 배정 시스템</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>차량 배정 시스템</h1>
-  <div class="toggle-wrapper">
-    <label><input type="checkbox" id="deptToggle"> 부서 우선 배정</label>
-  </div>
-  <div class="container">
-    <div class="column">
+  <header>
+    <h1>차량 배정 시스템</h1>
+    <div class="controls">
+      <label class="switch">
+        <input type="checkbox" id="deptToggle" onchange="syncToggle()" />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">부서 우선 배정</span>
+      <button onclick="assignCars()">배정하기</button>
+      <button onclick="confirmReset('all')">전체 리셋</button>
+      <button onclick="confirmReset('result')">배정결과 리셋</button>
+      <button onclick="confirmReset('exclude')">빨강 제외 리셋</button>
+    </div>
+  
+<div class="legend">
+  <span class="card green">초록</span>: 차량 있음 /
+  <span class="card blue">파랑</span>: 성별무관탑승차 /
+  <span class="card red">빨강</span>: 배정 제외
+</div>
+
+</header>
+  <main class="main-grid">
+    <section>
       <h2>형제</h2>
-      <div id="brothers" class="card-list"></div>
-    </div>
-    <div class="column">
+      <div id="brothers" class="card-section"></div>
+    </section>
+    <section>
       <h2>자매</h2>
-      <div id="sisters" class="card-list"></div>
+      <div id="sisters" class="card-section"></div>
+    </section>
+  </main>
+  <section>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <h2 style="margin:0;">배정 결과</h2>
+      <label class="switch">
+        <input type="checkbox" id="deptToggleBottom" onchange="syncToggle()" />
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">부서 우선 배정</span>
+      <button onclick="syncToggle(); assignCars()">배정하기</button>
     </div>
-  </div>
-  <div class="actions">
-    <button onclick="assignCars()">배정하기</button>
-    <button onclick="confirmReset('all')">전체 리셋</button>
-    <button onclick="confirmReset('result')">배정결과 리셋</button>
-    <button onclick="confirmReset('exclude')">빨강 빼고 리셋</button>
-  </div>
-  <pre id="result"></pre>
+    <div id="result" class="result-box"></div>
+  </section>
   <script src="script.js"></script>
 </body>
 </html>
