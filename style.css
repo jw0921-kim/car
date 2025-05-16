@@ -7,10 +7,13 @@ body {
 }
 
 header {
-  background: #3a7bd5;
-  color: white;
-  padding: 1rem;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
   text-align: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #ddd;
 }
 
 .guide {
@@ -97,17 +100,27 @@ footer {
 .buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 1rem;
+  gap: 6px;
+  margin-bottom: 0.8rem;
 }
 
 button {
-  padding: 6px 12px;
+  padding: 2px 6px;
+  background: #f0f7ff;
+  color: #3a7bd5;
+  border: 1px solid #3a7bd5;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  height: 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: none;
+}
+
+button:hover {
   background: #3a7bd5;
   color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
 }
 
 pre {
@@ -127,5 +140,11 @@ pre {
 
   .card-container {
     gap: 2px 3px;
+  }
+
+  button {
+    font-size: 9.5px;
+    height: 20px;
+    padding: 1px 4px;
   }
 }
